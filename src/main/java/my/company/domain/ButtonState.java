@@ -116,9 +116,35 @@ public class ButtonState {
         
         if (row1 == 3) {
             label.setText("Winner is " + value);
-            
+            disableAllButtons();
+        } else if (row2 == 3) {
+            label.setText("Winner is " + value);
+            disableAllButtons();
+        } else if (row3 == 3) {
+            label.setText("Winner is " + value);
+            disableAllButtons();
+        } else if (column1 == 3) {
+            label.setText("Winner is " + value);
+            disableAllButtons();
+        } else if (column2 == 3) {
+            label.setText("Winner is " + value);
+            disableAllButtons();
+        } else if (column3 == 3) {
+            label.setText("Winner is " + value);
+            disableAllButtons();
+        } else if (diagonalMain == 3) {
+            label.setText("Winner is " + value);
+            disableAllButtons();
+        } else if (diagonalSec == 3) {
+            label.setText("Winner is " + value);
+            disableAllButtons();
         }
         
+    }
+    
+    private void disableAllButtons() {
+        this.btnList.stream()
+                .forEach(button -> button.setDisable(true));
     }
     
 }
