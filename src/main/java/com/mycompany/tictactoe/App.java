@@ -1,6 +1,5 @@
 package com.mycompany.tictactoe;
 
-import com.mycompany.domain.ButtonStatement;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -9,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -22,8 +20,6 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        
-        ButtonStatement statements = new ButtonStatement();
         
         //Application title
         Parameters params = getParameters();
@@ -52,6 +48,8 @@ public class App extends Application {
         ArrayList<Button> btnList = createButtonList();
         
         //adding buttons to TicTacToe field
+        
+        
         field.add(btnList.get(0), 0, 0);
         field.add(btnList.get(1), 1, 0);
         field.add(btnList.get(2), 2, 0);
@@ -112,19 +110,67 @@ public class App extends Application {
                 btnList.get(position).setText("X");
                 label.setText("Turn: O");
                 btnList.get(position).setDisable(true);
-//                statements.addStateX(GridPane.getColumnIndex(btnList.get(position)), GridPane.getRowIndex(btnList.get(position)));
-//                statements.check("X");
-//                statements.check("O");
+                check(btnList,label,"X");
+                check(btnList,label,"O");
+
             } else {
                 btnList.get(position).setText("O");
                 label.setText("Turn: X");
                 btnList.get(position).setDisable(true);
-//                statements.addStateO(GridPane.getColumnIndex(btnList.get(position)), GridPane.getRowIndex(btnList.get(position)));
-//                statements.check("X");
-//                statements.check("O");
+                check(btnList,label,"X");
+                check(btnList,label,"O");
+
             }
         });
         
+
+        
     }
+    
+   public void check(ArrayList<Button> btnList, Label label, String value) {
+       
+       if (btnList.get(0).getText().equals(value) && btnList.get(1).getText().equals(value) && btnList.get(2).getText().equals(value)) {
+           label.setText("Winner is " + value);
+           disableAllButtons(btnList);
+       }
+       if (btnList.get(3).getText().equals(value) && btnList.get(4).getText().equals(value) && btnList.get(5).getText().equals(value)) {
+           label.setText("Winner is " + value);
+           disableAllButtons(btnList);
+       }
+       if (btnList.get(6).getText().equals(value) && btnList.get(7).getText().equals(value) && btnList.get(8).getText().equals(value)) {
+           label.setText("Winner is " + value);
+           disableAllButtons(btnList);
+       }
+       if (btnList.get(0).getText().equals(value) && btnList.get(3).getText().equals(value) && btnList.get(6).getText().equals(value)) {
+           label.setText("Winner is " + value);
+           disableAllButtons(btnList);
+       }
+       if (btnList.get(1).getText().equals(value) && btnList.get(4).getText().equals(value) && btnList.get(7).getText().equals(value)) {
+           label.setText("Winner is " + value);
+           disableAllButtons(btnList);
+       }
+       if (btnList.get(2).getText().equals(value) && btnList.get(5).getText().equals(value) && btnList.get(8).getText().equals(value)) {
+           label.setText("Winner is " + value);
+           disableAllButtons(btnList);
+       }
+       if (btnList.get(6).getText().equals(value) && btnList.get(4).getText().equals(value) && btnList.get(2).getText().equals(value)) {
+           label.setText("Winner is " + value);
+           disableAllButtons(btnList);
+       }
+       if (btnList.get(0).getText().equals(value) && btnList.get(4).getText().equals(value) && btnList.get(8).getText().equals(value)) {
+           label.setText("Winner is " + value);
+           disableAllButtons(btnList);
+       } else {
+           label.setText("Draw");
+       }
+       
+       
+   }
+   
+   public void disableAllButtons(ArrayList<Button> btnList) {
+       for (Button button : btnList) {
+           button.setDisable(true);
+       }
+   }
     
 }
