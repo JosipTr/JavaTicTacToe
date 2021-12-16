@@ -1,11 +1,14 @@
 package com.mycompany.tictactoe;
 
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -17,6 +20,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
+        
+        String value = "X";
         
         //Application title
         Parameters params = getParameters();
@@ -33,29 +38,30 @@ public class App extends Application {
         field.setHgap(20);
         field.setPrefSize(300, 300);
         
+        //layout which contains buttons and turnLabel
+        VBox completeLayout = new VBox();
+        completeLayout.setSpacing(20);
         
-        Button buttonFieldOne = createButton();
-        Button buttonFieldTwo = createButton();
-        Button buttonFieldThree = createButton();
-        Button buttonFieldFour = createButton();
-        Button buttonFieldFive = createButton();
-        Button buttonFieldSix = createButton();
-        Button buttonFieldSeven = createButton();
-        Button buttonFieldEight = createButton();
-        Button buttonFieldNine = createButton();
+        //Label which say whose turn it is
+        Label turn = new Label("Turn: " + value);
+        turn.setFont(Font.font("Monospaced", 40));
+        
+        ArrayList<Button> btnList = createButtonList();
         
         //adding buttons to TicTacToe field
-        field.add(buttonFieldOne, 0, 0);
-        field.add(buttonFieldTwo, 1, 0);
-        field.add(buttonFieldThree, 2, 0);
-        field.add(buttonFieldFour, 0, 1);
-        field.add(buttonFieldFive, 1, 1);
-        field.add(buttonFieldSix, 2, 1);
-        field.add(buttonFieldSeven, 0, 2);
-        field.add(buttonFieldEight, 1, 2);
-        field.add(buttonFieldNine, 2, 2);
+        field.add(btnList.get(0), 0, 0);
+        field.add(btnList.get(1), 1, 0);
+        field.add(btnList.get(2), 2, 0);
+        field.add(btnList.get(3), 0, 1);
+        field.add(btnList.get(4), 1, 1);
+        field.add(btnList.get(5), 2, 1);
+        field.add(btnList.get(6), 0, 2);
+        field.add(btnList.get(7), 1, 2);
+        field.add(btnList.get(8), 2, 2);
         
-        layout.setCenter(field);
+        completeLayout.getChildren().addAll(turn, field);
+        
+        layout.setCenter(completeLayout);
         
         Scene scene = new Scene(layout);
         
@@ -74,5 +80,13 @@ public class App extends Application {
         button.setFont(Font.font("Monospaced", 40));
         return button;
     }
-
+    
+    //creating arrayList and adding buttons to it
+    public ArrayList<Button> createButtonList() {
+        ArrayList<Button> btnList = new ArrayList();
+        for (int i = 0; i < 9; i++) {
+            btnList.add(createButton());
+        }
+        return btnList;
+    }
 }
