@@ -1,5 +1,6 @@
 package com.mycompany.tictactoe;
 
+import com.mycompany.domain.ButtonStatement;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -8,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -21,7 +23,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         
-        String value = "X";
+        ButtonStatement statements = new ButtonStatement();
         
         //Application title
         Parameters params = getParameters();
@@ -36,15 +38,16 @@ public class App extends Application {
         field.setAlignment(Pos.CENTER);
         field.setVgap(20);
         field.setHgap(20);
-        field.setPrefSize(300, 300);
         
-        //layout which contains buttons and turnLabel
+        //layout which contains buttons and labels
         VBox completeLayout = new VBox();
         completeLayout.setSpacing(20);
+        completeLayout.setAlignment(Pos.CENTER);
+        
         
         //Label which say whose turn it is
-        Label turn = new Label("Turn: " + value);
-        turn.setFont(Font.font("Monospaced", 40));
+        Label textTurn = new Label("Turn: X");
+        textTurn.setFont(Font.font("Monospaced", 40));
         
         ArrayList<Button> btnList = createButtonList();
         
@@ -59,7 +62,18 @@ public class App extends Application {
         field.add(btnList.get(7), 1, 2);
         field.add(btnList.get(8), 2, 2);
         
-        completeLayout.getChildren().addAll(turn, field);
+        btnAction(btnList, 0, textTurn);
+        btnAction(btnList, 1, textTurn);
+        btnAction(btnList, 2, textTurn);
+        btnAction(btnList, 3, textTurn);
+        btnAction(btnList, 4, textTurn);
+        btnAction(btnList, 5, textTurn);
+        btnAction(btnList, 6, textTurn);
+        btnAction(btnList, 7, textTurn);
+        btnAction(btnList, 8, textTurn);
+        
+        
+        completeLayout.getChildren().addAll(textTurn, field);
         
         layout.setCenter(completeLayout);
         
@@ -89,4 +103,28 @@ public class App extends Application {
         }
         return btnList;
     }
+    
+    //button logic
+    public void btnAction(ArrayList<Button> btnList, int position, Label label) {
+        
+        btnList.get(position).setOnAction(event -> {
+            if (label.getText().equals("Turn: X")) {
+                btnList.get(position).setText("X");
+                label.setText("Turn: O");
+                btnList.get(position).setDisable(true);
+//                statements.addStateX(GridPane.getColumnIndex(btnList.get(position)), GridPane.getRowIndex(btnList.get(position)));
+//                statements.check("X");
+//                statements.check("O");
+            } else {
+                btnList.get(position).setText("O");
+                label.setText("Turn: X");
+                btnList.get(position).setDisable(true);
+//                statements.addStateO(GridPane.getColumnIndex(btnList.get(position)), GridPane.getRowIndex(btnList.get(position)));
+//                statements.check("X");
+//                statements.check("O");
+            }
+        });
+        
+    }
+    
 }
