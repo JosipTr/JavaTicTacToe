@@ -48,6 +48,7 @@ public class ButtonState {
                 checkDraw(label);
                 check("O",label);
                 check("X",label);
+
                 
             } else {
                 this.matrix.get(x).get(y).setText("O");
@@ -57,8 +58,10 @@ public class ButtonState {
                 checkDraw(label);
                 check("O",label);
                 check("X",label);
+
             }
         });
+        
     }
     
     public void runAction(Label label) {
@@ -141,4 +144,5 @@ public class ButtonState {
             label.setText("Draw");
         }
     }
+    
 }

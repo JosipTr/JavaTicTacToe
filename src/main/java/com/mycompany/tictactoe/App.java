@@ -52,12 +52,7 @@ public class App extends Application {
         for (int i = 0; i < 3; i++) {
             buttonState.addButtonArray(i, buttonList());
         }
-        
-        //Button playAgain
-        
-        Button button = new Button("New Game");
-        
-        
+      
         //adding buttons to TicTacToe field
         buttonState.addToLayout(field);
         
@@ -101,17 +96,6 @@ public class App extends Application {
             buttons.add(createButton());
         }
         return buttons;
-    }
-    
-    
-    public void playAgain(Stage stage, Button button) {
-        button.setOnAction(event -> {
-            restart(stage, button);
-        });
-    }
-
-    private void restart(Stage stage, Button button) {
-        playAgain(stage,button);
     }
     
 }
