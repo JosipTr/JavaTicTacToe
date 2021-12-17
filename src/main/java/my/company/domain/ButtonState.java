@@ -75,15 +75,14 @@ public class ButtonState {
                 if (i == 0 && this.matrix.get(i).get(j).getText().equals(value)) row1++;
                 if (i == 1 && this.matrix.get(i).get(j).getText().equals(value)) row2++;
                 if (i == 2 && this.matrix.get(i).get(j).getText().equals(value)) row3++;
-                if (j == 1 && this.matrix.get(i).get(j).getText().equals(value)) column1++;
+                if (j == 0 && this.matrix.get(i).get(j).getText().equals(value)) column1++;
                 if (j == 1 && this.matrix.get(i).get(j).getText().equals(value)) column2++;
-                if (j == 1 && this.matrix.get(i).get(j).getText().equals(value)) column3++;
+                if (j == 2 && this.matrix.get(i).get(j).getText().equals(value)) column3++;
                 if (i == j && this.matrix.get(i).get(j).getText().equals(value)) mainDiag++;
                 if (i + j == 2 && this.matrix.get(i).get(j).getText().equals(value)) secDiag++;
             }
         }
         
-        System.out.println(row1);
         
         if (row1 == 3) {
             label.setText("Winner: " + value);
