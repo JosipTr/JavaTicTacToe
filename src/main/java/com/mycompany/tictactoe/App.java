@@ -24,7 +24,6 @@ public class App extends Application {
         
         ButtonState buttonState = new ButtonState();
         
-        
         //Application title
         Parameters params = getParameters();
         String title = params.getNamed().get("title");
@@ -49,6 +48,11 @@ public class App extends Application {
         Label textTurn = new Label("Turn: X");
         textTurn.setFont(Font.font("Monospaced", 40));
 
+        //buttons
+        for (int i = 0; i < 3; i++) {
+            buttonState.addButtonArray(i, buttonList());
+        }
+        
         
         //adding buttons to TicTacToe field
         buttonState.addToLayout(field);
@@ -60,9 +64,7 @@ public class App extends Application {
         layout.setCenter(completeLayout);
         
         //button logic
-        for (int i = 0; i < 9; i++) {
-            buttonState.setOnClick(i, textTurn);
-        }
+        buttonState.runAction(textTurn);
         
         //setting toDisplay
         Scene scene = new Scene(layout);
@@ -71,9 +73,29 @@ public class App extends Application {
         stage.setTitle(title);
         stage.show();
     }
-
+    
+    
+    /////////////////////////////MAIN///////////////////////////////////
+    
     public static void main(String[] args) {
         launch("--title=TicTacToe");
+    }
+    
+    ////////////////////////////FUNCTIONS/////////////////////////////////
+    
+    public Button createButton() {
+        Button button = new Button();
+        button.setPrefSize(80, 80);
+        button.setFont(Font.font("Monospaced", 40));
+        return button;
+    }
+    
+    public ArrayList<Button> buttonList() {
+        ArrayList<Button> buttons = new ArrayList();
+        for (int i = 0; i < 3; i++) {
+            buttons.add(createButton());
+        }
+        return buttons;
     }
     
 }
