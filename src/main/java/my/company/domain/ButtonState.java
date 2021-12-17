@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 /**
  *
@@ -43,6 +45,7 @@ public class ButtonState {
                 //checkFunct -->
                 label.setText("Turn: O");
                 this.matrix.get(x).get(y).setDisable(true);
+                checkDraw(label);
                 check("O",label);
                 check("X",label);
                 
@@ -51,6 +54,7 @@ public class ButtonState {
                 this.matrix.get(x).get(y).setDisable(true);
                 //checkFunct -->
                 label.setText("Turn: X");
+                checkDraw(label);
                 check("O",label);
                 check("X",label);
             }
@@ -67,7 +71,7 @@ public class ButtonState {
         
     }
     
-    public void check(String value, Label label) {
+    private void check(String value, Label label) {
         int row1 = 0, row2 = 0, row3 = 0, column1 = 0, column2 = 0, column3 = 0, mainDiag = 0, secDiag = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -112,7 +116,7 @@ public class ButtonState {
         
     }
     
-    public void disableAllButtons() {
+    private void disableAllButtons() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 this.matrix.get(i).get(j).setDisable(true);
@@ -120,4 +124,21 @@ public class ButtonState {
         }
     }
     
+    private boolean allDisabled() {
+        int flag = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (this.matrix.get(i).get(j).isDisabled()) {
+                    flag++;
+                }
+            }
+        }
+        return (flag == 9);
+    }
+    
+    private void checkDraw(Label label) {
+        if (allDisabled()) {
+            label.setText("Draw");
+        }
+    }
 }
